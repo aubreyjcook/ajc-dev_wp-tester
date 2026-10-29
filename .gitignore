@@ -1,0 +1,65 @@
+# WordPress - ignore core, configuration, examples, uploads and logs.
+# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+
+# Core
+#
+# Note: if you want to stage/commit WP core files
+# you can delete this whole section/until Configuration.
+/wp-admin/
+/wp-content/index.php
+/wp-content/languages
+/wp-content/plugins/index.php
+/wp-content/themes/index.php
+/wp-includes/
+/index.php
+/license.txt
+/readme.html
+/wp-*.php
+/xmlrpc.php
+
+# Configuration
+wp-config.php
+
+# Example themes
+/wp-content/themes/twenty*/
+
+# Example plugin
+/wp-content/plugins/hello.php
+
+# Uploads
+/wp-content/uploads/
+
+# Log files
+*.log
+
+# htaccess
+/.htaccess
+
+# Bundled and third-party plugins/themes. This template tracks only its
+# boilerplate. When you add a plugin or theme, un-ignore that directory.
+/wp-content/plugins/*
+!/wp-content/plugins/wp-initializer/
+
+/wp-content/themes/*
+!/wp-content/themes/wp-initializer-theme/
+
+# Runtime
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/upgrade-temp-backup/
+/wp-content/backups/
+
+# Local environment, dependencies, and editor files
+.env
+.env.*
+*.sql
+*.sqlite
+/vendor/
+node_modules/
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*~

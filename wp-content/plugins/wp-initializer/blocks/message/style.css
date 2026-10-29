@@ -1,0 +1,5 @@
+.wp-initializer-message {
+	margin: 1rem 0;
+	padding: 0.75rem 1rem;
+	border-left: 4px solid currentColor;
+}

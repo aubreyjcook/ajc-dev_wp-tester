@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wp-initializer/message",
+  "title": "Initializer Message",
+  "category": "widgets",
+  "icon": "editor-paragraph",
+  "description": "Displays the message saved in Settings → Initializer.",
+  "keywords": ["message", "initializer"],
+  "textdomain": "wp-initializer",
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./editor.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

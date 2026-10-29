@@ -1,0 +1,206 @@
+/*
+Theme Name: WP Initializer
+Theme URI: https://example.com/wp-initializer-theme
+Author: Your Name
+Description: Starter theme with the classic PHP template hierarchy, block editor support, and one custom page template.
+Version: 0.1.0
+Requires at least: 6.7
+Tested up to: 7.1
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: wp-initializer-theme
+Tags: blog, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks
+*/
+
+.skip-link:focus {
+	background: #fff;
+	clip: auto !important;
+	clip-path: none;
+	color: #000;
+	display: block;
+	font-size: 1rem;
+	height: auto;
+	left: 0.5rem;
+	line-height: normal;
+	padding: 0.75rem 1rem;
+	position: absolute;
+	text-decoration: none;
+	top: 0.5rem;
+	width: auto;
+	z-index: 100000;
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background: #fff;
+	clip: auto !important;
+	clip-path: none;
+	color: #000;
+	display: block;
+	font-size: 1rem;
+	height: auto;
+	left: 0.5rem;
+	line-height: normal;
+	padding: 0.75rem 1rem;
+	top: 0.5rem;
+	width: auto;
+	z-index: 100000;
+}
+
+body {
+	margin: 0;
+	color: #1d1d1d;
+	background: #fff;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 1.125rem;
+	line-height: 1.6;
+}
+
+a {
+	color: inherit;
+}
+
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+
+.site {
+	max-width: 72rem;
+	margin-inline: auto;
+	padding: 1.5rem;
+}
+
+.site-header {
+	margin-bottom: 2rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid currentColor;
+}
+
+.site-title {
+	margin: 0;
+	font-size: 1.75rem;
+	line-height: 1.2;
+}
+
+.site-title a {
+	text-decoration: none;
+}
+
+.site-description {
+	margin: 0.25rem 0 0;
+}
+
+.custom-logo {
+	display: block;
+	max-height: 3rem;
+	width: auto;
+	margin-bottom: 0.75rem;
+}
+
+.primary-navigation ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
+	margin: 1rem 0 0;
+	padding: 0;
+}
+
+.primary-navigation li {
+	list-style: none;
+}
+
+.primary-navigation .sub-menu {
+	display: block;
+	padding-left: 1rem;
+}
+
+.site-main {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 2rem;
+	align-items: start;
+}
+
+.content-area {
+	min-width: 0;
+}
+
+@media (min-width: 800px) {
+	.site-main:has(.widget-area) {
+		grid-template-columns: minmax(0, 1fr) 16rem;
+	}
+}
+
+.entry-title {
+	margin-bottom: 0.25rem;
+	line-height: 1.2;
+}
+
+.entry-meta {
+	margin-top: 0;
+	font-size: 0.9rem;
+}
+
+.entry-thumbnail {
+	margin: 1rem 0;
+}
+
+.entry-thumbnail img,
+.entry-content img {
+	max-width: 100%;
+	height: auto;
+}
+
+.entry-content > *:first-child {
+	margin-top: 0;
+}
+
+article {
+	margin-bottom: 2.5rem;
+}
+
+.widget-area .widget {
+	margin-bottom: 1.5rem;
+}
+
+.widget-title {
+	margin-bottom: 0.5rem;
+	font-size: 1rem;
+}
+
+.site-footer {
+	margin-top: 3rem;
+	padding-top: 1rem;
+	border-top: 1px solid currentColor;
+	font-size: 0.9rem;
+}
+
+.comment-list {
+	padding-left: 1.25rem;
+}
+
+.search-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.search-field {
+	min-width: 12rem;
+	padding: 0.4rem 0.5rem;
+	font: inherit;
+}
