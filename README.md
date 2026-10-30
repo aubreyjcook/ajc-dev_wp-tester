@@ -33,6 +33,44 @@ wp-content/
 
 The plugin does not require the theme. The theme does not require the plugin. The must-use file loads on its own and currently does nothing, so a site does not change until you activate the plugin or theme or write code in the must-use file.
 
+## Run locally with Docker
+
+[`docker-compose.yml`](docker-compose.yml) brings up MariaDB and WordPress (Apache + PHP 8.3) and mounts this repository as the WordPress root. WordPress core, `wp-config.php`, and the database live outside git (all gitignored), so the working tree stays clean. Requires Docker Desktop with its WSL2 backend working. The full, repeatable step-by-step sequence — including the WP-CLI install and the site-URL fix — is in [`SETUP.md`](SETUP.md).
+
+```powershell
+docker compose up -d
+```
+
+The first start pulls the images, copies WordPress core into this directory, and writes `wp-config.php`. Then finish the install once:
+
+- **Browser (easiest):** open http://localhost:8080, fill in the installer (site title, username, password, email), then in wp-admin activate **WP Initializer** under Plugins and **WP Initializer** under Appearance → Themes.
+- **WP-CLI (scriptable):** the `wordpress` image does not bundle WP-CLI, so download it into this directory and run it through the container's PHP:
+
+  ```powershell
+  curl.exe -L -o wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+  docker compose exec wp php wp-cli.phar core install --url=http://localhost:8080 --title="WP Initializer" --admin_user=admin --admin_password=admin --admin_email=admin@example.com --allow-root
+  docker compose exec wp php wp-cli.phar plugin activate wp-initializer --allow-root
+  docker compose exec wp php wp-cli.phar theme activate wp-initializer-theme --allow-root
+  Remove-Item wp-cli.phar
+  ```
+
+  WP-CLI can record the container path in the site URL. If front-page links show `/var/www/html/`, reset the two options:
+
+  ```powershell
+  docker compose exec wp php wp-cli.phar option update home http://localhost:8080 --allow-root
+  docker compose exec wp php wp-cli.phar option update siteurl http://localhost:8080 --allow-root
+  ```
+
+Site: http://localhost:8080 · Admin: http://localhost:8080/wp-admin
+
+```powershell
+docker compose down      # stop, keep the database
+docker compose up -d     # start again
+docker compose down -v   # stop and delete the database (fresh start)
+```
+
+The credentials and the `8080` port are set in `docker-compose.yml`; change them before exposing this anywhere. Prefer a bare WP-CLI + local MySQL server instead? See the next section.
+
 ## Use this repository as the WordPress root
 
 From the repository root, with [WP-CLI](https://wp-cli.org/):

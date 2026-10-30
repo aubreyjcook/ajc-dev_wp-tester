@@ -1,0 +1,45 @@
+# Local dev stack for running this WordPress boilerplate.
+# Usage (from this repo root):
+#   docker compose up -d
+#   then open http://localhost:8080 to finish the install in the browser, or
+#   follow SETUP.md for the scriptable WP-CLI steps.
+#
+# Credentials below are local-dev only. Change them before exposing this anywhere.
+services:
+  db:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  wp:
+    image: wordpress:php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    ports:
+      - "8080:80"
+    volumes:
+      # The repo root becomes the WordPress root. The image lays down core and
+      # generates wp-config.php on first boot (both gitignored). Only this
+      # repo's wp-content (mu-plugins, plugin, theme) is tracked.
+      - .:/var/www/html
+
+volumes:
+  db_data:
